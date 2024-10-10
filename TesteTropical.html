@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Rastreio</title>
+</head>
+
+<body>
+    <h1>Teste de Rastreio</h1>
+    <form id="form_pagina_imovel" action="#" method="post">
+        <div>
+            <input type="text" name="referer_title" value="Get Sense" />
+        </div>
+        <br /><br />
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="form_fields[name]" value="testeMarta" />
+        <br /><br />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="form_fields[email]" value="teste@deixacommarta.com.br" />
+        <br /><br />
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="form_fields[field_015fd85]" value="81999999999" />
+        <br /><br />
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="form_fields[message]"></textarea>
+        <br /><br />
+        <button type="submit">Enviar</button>
+    </form>
+
+    <!-- MTag script initialization start-->
+    <script type="text/javascript">
+
+        function getCodigoElem() {
+            let codigoElem = document.querySelector('input[name="referer_title"]').value;
+            let codigoTracking;
+
+            switch (codigoElem) {
+                case 'Get 4 You':
+                    codigoTracking = '3026b760-e5ca-452f-a71a-54a32eb8001f'; // Get 4 You
+                    break;
+                case 'BOX 150':
+                    codigoTracking = '8358948e-a2aa-4a1c-98eb-142981d2fd18'; // Box 150
+                    break;
+                case 'Get Sense':
+                    codigoTracking = '6c10ef62-fe9b-4d01-87d9-3e22d0e92c2c'; // Get Sense
+                    break;
+                case 'Raveo':
+                    codigoTracking = '9d298160-0353-4bca-ba27-8eeddc1a4ff1'; // Raveo
+                    break;
+                case 'Get One':
+                    codigoTracking = '0829b84f-81bf-4f3f-bcd1-b7c9da466204'; // Get One
+                    break;
+                default:
+                    codigoTracking = 'c0dc71e0-5285-40b5-9025-90fda12adad2'; // Tag Tropical
+            }
+
+            console.log("Código de Rastreio: " + codigoTracking);
+            return codigoTracking;
+        }
+
+        let codigoTracking = getCodigoElem();
+        let options = {
+            "trackView": true,
+            "contatoFieldToInputNameMap": {
+                "telefone": "form_fields[field_015fd85]",
+                "mensagem": "form_fields[message]",
+                "nome": "form_fields[name]",
+                "email": "form_fields[email]"
+            },
+            "contatoFormSelector": "#form_pagina_imovel"
+        };
+        console.log(options)
+        let contatoCallBackFunction = function (evt) {
+            console.log('Rastreado pela Marta!');
+        };
+        options.contatoCallBackFunction = contatoCallBackFunction;
+
+        function initMTag() {
+            martaTrackingTag = new mtag(codigoTracking, options);
+        }
+    </script>
+    <script defer src="https://app.deixacommarta.com.br/arquivos/scripts/mtag.min.js" onload="initMTag()"></script>
+    <!-- MTag script initialization end -->
+
+</body>
+
+</html>
